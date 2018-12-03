@@ -1,14 +1,52 @@
 # TMJudge
-Projeto de construção de uma interface de correção de códigos online
 
-:octocat: Append and modify this list as you make changes to this repository :innocent:
+    TMJudge: A Code Judge Environment
+    Copyright (C) 2018  Thales Lima Menezes
+
+    Philosophy:
+        A Code Judge should be a tool to guide student's programmin' learning,
+        a environment to correct and show errors as opportunities for growth;
+        while also assisting teachers and tutors with class management, giving
+        more time to address specific or theorical questions with the student.
+
+        To achieve this, the judge can not be viewed by students as a foe
+        to be defeated; or a buggy program to appologize for it's flaws
+        in a attempt to keep the student motivated.
+        
+        The judge should be as independent, well polished and communicative as
+        possible, it should be a arrow pointing in a direction, when necessary,
+        instead of a riddle to be solved in every single feature.
+
+    This program is free software: you can redistribute it and/or modify it under the terms
+    of the GNU Affero General Public License as published by the Free Software Foundation,
+    either version 3 of the License, or any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License along with this
+    program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Lead Developer:
+        Thales L Menezes - Undergraduated Computer Science student at University of Brasília
+        source := https://github.com/thaleslim/TMJudge
+        email  := thalesmenezes13@gmail.com
+
+:innocent: Append and modify this list as you make changes to this repository
+
 - [ ] unchecked example
 - [x] checked example
 
+:octocat: Thank you  
+
 TODOs:
 
- - [ ] Rever forma de execução do código: pouco seguro usar 
-     ```python
-     subprocess.run(*args, shell=True)
-     ```
-     - Possível paranoia com segurança, considerando que os comandos do _`cmd`_ são imbutidos no código
+
+Solved:
+- [x] Review the way to run the subject' code: I worry about it's safety and usability towards the server 
+    ```python
+    subprocess.run(*args, shell=True)
+    ```
+    - Possibly worrying more than necessary, considerating it's most likely to be used with beginner programmers and the _`shell commands`_ are "hardcoded".
+        - Solution: instead of using `subprocess` module we can use python' built-in `exec()` passing in as a `*arg` the subject' code. This provides more security to server (since we don't need to access the shell anymore) and flexibility (we can insert lines of code to extract usefull information about the code being tested) without analysing the code for "malicious intent"(may be a feature on later versions); besides, less modules needed. 
