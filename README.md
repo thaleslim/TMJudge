@@ -1,7 +1,7 @@
 # TMJudge
 
     TMJudge: A Code Judge Environment
-    Copyright (C) 2018  Thales Lima Menezes
+    Copyright (C) 2018 Thales Menezes
 
     Philosophy:
         A Code Judge should be a tool to guide student's programmin' learning,
@@ -29,7 +29,7 @@
     program.  If not, see <https://www.gnu.org/licenses/>.
 
     Lead Developer:
-        Thales L Menezes - Undergraduated Computer Science student at University of Brasília
+        Thales Menezes - Undergraduated Computer Science student at University of Brasília
         source := https://github.com/thaleslim/TMJudge
         email  := thalesmenezes13@gmail.com
 
@@ -41,7 +41,14 @@
 :octocat: Thank you  
 
 TODOs:
-
+- [ ] Find a way to make this statement generic
+    ```python
+    import sys
+    sys.path.append('src/')
+    from module import *
+    ```
+    - Possible solution by using `importlib`
+- [ ] Add support to input
 
 Solved:
 - [x] Review the way to run the subject' code: I worry about it's safety and usability towards the server 
@@ -49,4 +56,4 @@ Solved:
     subprocess.run(*args, shell=True)
     ```
     - Possibly worrying more than necessary, considerating it's most likely to be used with beginner programmers and the _`shell commands`_ are "hardcoded".
-        - Solution: instead of using `subprocess` module we can use python' built-in `exec()` passing in as a `*arg` the subject' code. This provides more security to server (since we don't need to access the shell anymore) and flexibility (we can insert lines of code to extract usefull information about the code being tested) without analysing the code for "malicious intent"(may be a feature on later versions); besides, less modules needed. 
+        - Solution: instead of using `subprocess` module we can use python' built-in `exec()` and `eval()` passing in as a `*arg` the subject' code. This provides more security to server (since we don't need to access the shell anymore) and flexibility (we can insert lines of code to extract usefull information about the code being tested) without analysing the code for "malicious intent"(may be a feature on later versions); besides, less modules needed.

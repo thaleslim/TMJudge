@@ -1,5 +1,5 @@
 # TMJudge: A Code Judge Environment
-# Copyright (C) 2018  Thales Lima Menezes @thaleslim
+# Copyright (C) 2018 Thales Menezes @thaleslim
 
-print("hello",end='')
+print("Hello",end='')
 x = 5
