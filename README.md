@@ -49,6 +49,7 @@ TODOs:
     ```
     - Possible solution by using `importlib`
 - [ ] Add support to input
+    - Possible solution: comment lines with input() and other commands that generate interruptions; and before import check if runs
 
 Solved:
 - [x] Review the way to run the subject' code: I worry about it's safety and usability towards the server 
