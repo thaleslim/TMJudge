@@ -41,19 +41,29 @@
 :octocat: Thank you  
 
 TODOs:
-- [ ] Find a way to make this statement generic
+- [ ] Create a function to run code passing arguments
+    - Sugestion model:
     ```python
-    import sys
-    sys.path.append('src/')
-    from module import *
+    (filename: str, *args)
+        if len(args) == 0 : input = output = None
+        if len(args) == 1 : input = None; output = args[0]
+        if len(args) == 2 : input = args[0]; output = args[1]
+        if len(args) > 2  : exec; call run again with (args[2:])
+    return Program || [Program, Program]
     ```
-    - Possible solution by using `importlib`
-- [ ] Add support to input
+- [ ] Add support to `input()`
+    - Solution: using another `contextmanager` works, on the main scope.
+    - Drawbacks: 
+        - `exec()` throws an error `<function> doesn't exist`, if inside a function
+            - `import` and `input()` don't interact smoothly
+        - Solution: `exec()` all definitions globally, ignoring `input()`, and `exec()` again for test
+- [ ] Add a way to kill the program after time runs outs or infinite loop
+    - Solution: use `trace` module instead of `exec()` and `eval()` directly
 
 Solved:
 - [x] Review the way to run the subject' code: I worry about it's safety and usability towards the server 
     ```python
-    subprocess.run(*args, shell=True)
+    subprocess.run(args, shell=True)
     ```
     - Possibly worrying more than necessary, considerating it's most likely to be used with beginner programmers and the _`shell commands`_ are "hardcoded".
-        - Solution: instead of using `subprocess` module we can use python' built-in `exec()` and `eval()` passing in as a `*arg` the subject' code. This provides more security to server (since we don't need to access the shell anymore) and flexibility (we can insert lines of code to extract usefull information about the code being tested) without analysing the code for "malicious intent"(may be a feature on later versions); besides, less modules needed.
+        - Solution: instead of using `subprocess` module we can use python' built-in `exec()` and `eval()` passing the subject' code. This provides more security to server (since we don't need to access the shell anymore) and flexibility (we can insert lines of code to extract usefull information about the code being tested) without the need to analyse the code for "malicious intent"(may be a feature on later versions); besides, less modules needed.
