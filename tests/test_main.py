@@ -46,7 +46,7 @@ def test_main(filename: str, output: str, user_input: str = ''):
     #     sys.stdin = stdin
     #     yield stdin
     #     sys.stdin = old
-    
+
     with stdoutIO() as consoleout:
         # with stdinIO(StringIO(user_input)) as consolein:
         __globals__ = globals().copy()
@@ -54,16 +54,16 @@ def test_main(filename: str, output: str, user_input: str = ''):
         eval(compile(   source=open(filename).read(),
                         filename=filename,     # subject' attempt
                         mode='exec'))
-    
+
     _globals_ = {}
-    for variable in globals():
-        if __globals__.get(variable) == None and variable[0] != '_':
-            _globals_[variable] = globals()[variable]
- 
+    for _ in globals():
+        if __globals__.get(_) == None and _[0] != '_':
+            _globals_[_] = globals()[_]
+    
     _locals_ = {}
-    for variable in locals():
-        if __locals__.get(variable) == None and variable != 'variable' and variable[0] != '_':
-            _locals_[variable] = locals()[variable]
+    for _ in locals():
+        if __locals__.get(_) == None and _[0] != '_':
+            _locals_[_] = locals()[_]
 
     # stores the output
     that    = Program( input = user_input, output = consoleout.getvalue() , locals=_locals_, globals = _globals_ )
