@@ -1,71 +1,71 @@
 # TMJudge: A Code Judge Environment
-# Copyright (C) 2018 Thales Menezes @thaleslim
+# Copyright (C) 2018 Thales Menezes @thaleslim 
 
-import pytest
-
-import sys
-from collections import namedtuple
-
-sys.path.append('src/')
-from recursion import *
-# import importlib
-# importlib.import_module('recursion')
-# locals()['fatorial'] = sys.modules['recursion'].fatorial
-
-Program = namedtuple("Program", "input output locals globals")
-
+# First ideia
 # import subprocess as console
 # def test_main():
 #     assert console.check_output('python src/main.py', timeout=1, shell=True).decode('utf-8') == 'hello'
 
-@pytest.mark.parametrize("filename, output",[
-    ("src/main.py","Hello"),
-    ("src/recursion.py",'6')
+# Model to store general test suite' result information
+from collections import namedtuple
+Program = namedtuple("Program", "input output globals")
+
+import sys
+import contextlib
+from io import StringIO
+
+@contextlib.contextmanager
+def stdoutIO(stdout=None):
+    old = sys.stdout
+    if stdout is None:
+        stdout = StringIO()
+    sys.stdout = stdout
+    yield stdout
+    sys.stdout = old
+
+@contextlib.contextmanager
+def stdinIO(stdin=None):
+    old = sys.stdin
+    if stdin is None:
+        stdin = StringIO()
+    sys.stdin = stdin
+    yield stdin
+    sys.stdin = old
+
+import pytest
+
+@pytest.fixture
+def run():
+    def run(filename: str, user_input: str):
+        '''
+            Executes the code from <filename>.py passing <user_input> as input().
+            Returns  Program() with general information about the code execution. 
+        '''
+        # resources is globals() from <filename>.py
+        resources_cpy = resources = {}
+        
+        open_file = open(filename)
+        # consoleout is stdout from <filename>.py  
+        with stdoutIO() as consoleout:
+            with stdinIO(StringIO(user_input)):
+                resources_cpy = globals().copy()
+                eval(compile(   source=open_file.read(),
+                                filename=filename,
+                                mode='exec' ), resources)
+        open_file.close()
+        # filters unnecessary globals() items
+        for _ in resources_cpy:
+            if resources.get(_) != None:
+                resources.pop(_)
+        # Subject' program test output
+        return Program( input = user_input, output = consoleout.getvalue() , globals = resources )
+    return run
+
+@pytest.mark.parametrize("filename, user_input, output",[
+    ("src/main.py",'',"Hello"),
+    ("src/recursion.py",'3','6'),
+    ("src/recursion.py",'5',"120")
 ])
-def test_main(filename: str, output: str, user_input: str = ''):
-    __globals__ = {}
-    __locals__ = {}
-
-    import contextlib
-    from io import StringIO
-
-    @contextlib.contextmanager
-    def stdoutIO(stdout=None):
-        old = sys.stdout
-        if stdout is None:
-            stdout = StringIO()
-        sys.stdout = stdout
-        yield stdout
-        sys.stdout = old
-
-    # @contextlib.contextmanager
-    # def stdinIO(stdin=None):
-    #     old = sys.stdin
-    #     if stdin is None:
-    #         stdin = StringIO()
-    #     sys.stdin = stdin
-    #     yield stdin
-    #     sys.stdin = old
-
-    with stdoutIO() as consoleout:
-        # with stdinIO(StringIO(user_input)) as consolein:
-        __globals__ = globals().copy()
-        __locals__  = locals().copy()
-        eval(compile(   source=open(filename).read(),
-                        filename=filename,     # subject' attempt
-                        mode='exec'))
-
-    _globals_ = {}
-    for _ in globals():
-        if __globals__.get(_) == None and _[0] != '_':
-            _globals_[_] = globals()[_]
-    
-    _locals_ = {}
-    for _ in locals():
-        if __locals__.get(_) == None and _[0] != '_':
-            _locals_[_] = locals()[_]
-
-    # stores the output
-    that    = Program( input = user_input, output = consoleout.getvalue() , locals=_locals_, globals = _globals_ )
-    print(that)
-    assert that.output == output
+def test_main(run, filename: str, user_input: str, output: str):
+    result = run(filename, user_input)
+    assert result.output == output

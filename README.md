@@ -41,26 +41,24 @@
 :octocat: Thank you  
 
 TODOs:
-- [ ] Create a function to run code passing arguments
-    - Sugestion model:
+- [ ] Use custom exceptions module:
+    - Study the possibility to create a package for extra modules
+    - Usage example:
     ```python
-    (filename: str, *args)
-        if len(args) == 0 : input = output = None
-        if len(args) == 1 : input = None; output = args[0]
-        if len(args) == 2 : input = args[0]; output = args[1]
-        if len(args) > 2  : exec; call run again with (args[2:])
-    return Program || [Program, Program]
+    sys.path.append('src/')
+    import exceptions as custom_errors
+    def func(*args):
+        if not len(args):
+            raise custom_errors.InvalidArgument("No parameters were assigned", args)
     ```
-- [ ] Add support to `input()`
-    - Solution: using another `contextmanager` works, on the main scope.
-    - Drawbacks: 
-        - `exec()` throws an error `<function> doesn't exist`, if inside a function
-            - `import` and `input()` don't interact smoothly
-        - Solution: `exec()` all definitions globally, ignoring `input()`, and `exec()` again for test
 - [ ] Add a way to kill the program after time runs outs or infinite loop
     - Solution: use `trace` module instead of `exec()` and `eval()` directly
 
-Solved:
+Solved (Latest to Oldest):
+- [x] Add support to `input()`
+    - Solution: using another `contextmanager`.
+- [x] Create a function to run code passing arguments
+    - Solution: `@pytest.fixture run` created.
 - [x] Review the way to run the subject' code: I worry about it's safety and usability towards the server 
     ```python
     subprocess.run(args, shell=True)

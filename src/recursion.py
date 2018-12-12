@@ -6,4 +6,4 @@ def fatorial(n: int):
         return 1
     return n * fatorial(n-1)
 
-print( fatorial(3), end='')
+print( fatorial(int(input())), end='')
