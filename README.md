@@ -40,7 +40,7 @@
 
 :octocat: Thank you  
 
-TODOs:
+#### TODOs:
 - [ ] Use custom exceptions module:
     - Study the possibility to create a package for extra modules
     - Usage example:
@@ -53,8 +53,14 @@ TODOs:
     ```
 - [ ] Add a way to kill the program after time runs outs or infinite loop
     - Solution: use `trace` module instead of `exec()` and `eval()` directly
+- [ ] Store more details about the subject' code:
+    - Examples: uses recursion? where?
+- [ ] Reorganize files and parametrizing method
+    - Situation: Parametrizing is hardcoded
+    - Goal: To pass a specific file to run a specific set of tests, test_questionX.py, and crete a log with a percentage of completition
+    - Solution: executin' the module will be a task to the web environment to query, but for now the test suite need to support receiving a global filename arg
 
-Solved (Latest to Oldest):
+#### Solved (Latest to Oldest):
 - [x] Add support to `input()`
     - Solution: using another `contextmanager`.
 - [x] Create a function to run code passing arguments
@@ -65,3 +71,11 @@ Solved (Latest to Oldest):
     ```
     - Possibly worrying more than necessary, considerating it's most likely to be used with beginner programmers and the _`shell commands`_ are "hardcoded".
         - Solution: instead of using `subprocess` module we can use python' built-in `exec()` and `eval()` passing the subject' code. This provides more security to server (since we don't need to access the shell anymore) and flexibility (we can insert lines of code to extract usefull information about the code being tested) without the need to analyse the code for "malicious intent"(may be a feature on later versions); besides, less modules needed.
+
+#### Remember where you began:
+```python
+# First ideia
+import subprocess as console
+def test_main():
+    assert console.check_output('python src/main.py', timeout=1, shell=True).decode('utf-8') == 'hello'
+```
