@@ -40,9 +40,12 @@
 
 :octocat: Thank you  
 
-#### TODOs:
+#### TODOs (always remember to prioritize the essentials):
+- [ ] Reorganize parametrizing method
+    - Situation: Parametrizing is hardcoded
+    - Goal: To pass a specific file to run a specific set of tests, test_questionX.py, and crete a log with a percentage of completition
+    - Solution: executin' the module will be a task to the web environment to query, but for now the test suite need to support receiving a global filename arg
 - [ ] Use custom exceptions module:
-    - Study the possibility to create a package for extra modules
     - Usage example:
     ```python
     sys.path.append('src/')
@@ -53,14 +56,38 @@
     ```
 - [ ] Add a way to kill the program after time runs outs or infinite loop
     - Solution: use `trace` module instead of `exec()` and `eval()` directly
-- [ ] Store more details about the subject' code:
-    - Examples: uses recursion? where?
-- [ ] Reorganize files and parametrizing method
-    - Situation: Parametrizing is hardcoded
-    - Goal: To pass a specific file to run a specific set of tests, test_questionX.py, and crete a log with a percentage of completition
-    - Solution: executin' the module will be a task to the web environment to query, but for now the test suite need to support receiving a global filename arg
+- [ ] Expand Tester.run() funcionalities
+    - [ ] Store more details about the subject' code:
+        - Examples: uses recursion? where?
+    - [ ] If multiple inputs -> execute run multiple times -> return list(Program())
+    - [ ] Add support to filename or code as input
+- [ ] Search for a solution to import engine other than modifying path and package the entire folder
+    - Situation: Every test file, previous to engine import, needs this header
+        ```python
+        import sys
+        sys.path.append('..\\..\\')
+        from engine import Tester
+        ```
+    - Goal: using relative paths to import without the need to invoke sys.path
 
 #### Solved (Latest to Oldest):
+- [x] Study the possibility to create a package for extra modules
+    - Solution: Created package `engine` with essential modules to the Judge
+- [x] Reorganize files structure
+    - Solution: Current structure stands on 3 main folders:
+        ```
+        ├── alumni
+        │   └── enrollment code
+        │       └── challenge package number
+        │           └── <challenge name>.py
+        ├── engine
+        │   ├── __init__.py
+        |   ├── <exceptions_classes>.py
+        │   └── Tester.py
+        └── tests
+            └── challenge package number
+                └── test_<challenge name>.py
+        ```
 - [x] Add support to `input()`
     - Solution: using another `contextmanager`.
 - [x] Create a function to run code passing arguments
