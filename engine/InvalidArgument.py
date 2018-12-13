@@ -3,4 +3,4 @@ class InvalidArgument(Exception):
     def __init__(self, message, cause):
         self.message = message
         self.cause = cause
-        super().__init__(message, cause) 
+        super().__init__(message, cause)
