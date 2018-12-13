@@ -44,6 +44,12 @@
 - [ ] Generate test log
     - Goal: To pass a specific file to run a specific set of tests, test_questionX.py, and crete a log with a percentage of completition
     - Note: executin' the module will be a task to the web environment to query
+    - Solution Example: pytest tests/1/test_main.py -F alumni\190015417\1\main.py | tee log.txt
+    <!--
+    caplog 
+    logging.LogRecord
+    https://docs.pytest.org/en/latest/reference.html#caplog
+      -->
 - [ ] Use custom exceptions module:
     - Usage example:
     ```python
