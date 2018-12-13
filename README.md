@@ -61,14 +61,13 @@
         - Examples: uses recursion? where?
     - [ ] If multiple inputs -> execute run multiple times -> return list(Program())
     - [ ] Add support to filename or code as input
-- [ ] Search for a solution to import engine other than modifying path and package the entire folder
+- [ ] Optional: Make this prettier
     - Situation: Every test file, previous to engine import, needs this header
         ```python
         import sys
         sys.path.append('..\\..\\')
         from engine import Tester
         ```
-    - Goal: using relative paths to import without the need to invoke sys.path
 
 #### Solved (Latest to Oldest):
 - [x] Study the possibility to create a package for extra modules
