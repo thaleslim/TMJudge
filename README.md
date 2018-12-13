@@ -41,10 +41,9 @@
 :octocat: Thank you  
 
 #### TODOs (always remember to prioritize the essentials):
-- [ ] Reorganize parametrizing method
-    - Situation: Parametrizing is hardcoded
+- [ ] Generate test log
     - Goal: To pass a specific file to run a specific set of tests, test_questionX.py, and crete a log with a percentage of completition
-    - Solution: executin' the module will be a task to the web environment to query, but for now the test suite need to support receiving a global filename arg
+    - Note: executin' the module will be a task to the web environment to query
 - [ ] Use custom exceptions module:
     - Usage example:
     ```python
@@ -65,11 +64,13 @@
     - Situation: Every test file, previous to engine import, needs this header
         ```python
         import sys
-        sys.path.append('..\\..\\')
+        sys.path.insert(0, "\\".join( __file__.split('\\')[0:4] ) + '\\TMJudge\\')
         from engine import Tester
         ```
 
 #### Solved (Latest to Oldest):
+- [x] Filename argument is hardcoded
+    - Solution: Added support to `-F` and `--filename` console args, watch for open() restrictions
 - [x] Study the possibility to create a package for extra modules
     - Solution: Created package `engine` with essential modules to the Judge
 - [x] Reorganize files structure
