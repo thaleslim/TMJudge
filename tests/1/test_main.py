@@ -2,7 +2,7 @@
 # Copyright (C) 2018 Thales Menezes @thaleslim 
 
 import sys
-sys.path.insert(0, "\\".join( __file__.split('\\')[0:4] ) + '\\TMJudge\\')
+sys.path.append(__file__ + '\\..\\..\\..\\')
 from engine import Tester
 
 import pytest
