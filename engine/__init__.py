@@ -3,4 +3,5 @@ __all__ = [
         'Tester',
         ]
 
-import engine.InvalidArgument, engine.Tester
+import engine.InvalidArgument as InvalidArgument
+import engine.Tester as Tester
