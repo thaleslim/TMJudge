@@ -38,6 +38,6 @@ def run():
 
 @pytest.fixture
 def log():
-    def __log__(error_message: str, *args):
-        return Tester.log(error_message, *args)
+    def __log__(message, expected_output, captured_output, *args):
+        return Tester.log(message, expected_output, captured_output, *args)
     return __log__

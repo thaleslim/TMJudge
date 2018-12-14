@@ -41,16 +41,6 @@
 :octocat: Thank you  
 
 #### TODOs (always remember to prioritize the essentials):
-- [ ] Generate test log
-    - Goal: To pass a specific file to run a specific set of tests, test_questionX.py, and crete a log with a percentage of completition
-    - Note: executin' the module will be a task to the web environment to query
-    - Solution Example: pytest tests/1/test_main.py -F alumni\190015417\1\main.py | tee log.txt
-    <!--
-    Possible use to capture raise errors from the students code
-    caplog 
-    logging.LogRecord
-    https://docs.pytest.org/en/latest/reference.html#caplog
-      -->
 - [ ] Use custom exceptions module:
     - Usage example:
     ```python
@@ -68,8 +58,15 @@
         - Examples: uses recursion? where?
     - [ ] If multiple inputs -> execute run multiple times -> return list(Program())
     - [ ] Add support to filename or code as input
+    <!--
+        Possible use to capture raised Exceptions from the students code
+        caplog
+        logging.LogRecord
+        https://docs.pytest.org/en/latest/reference.html#caplog
+      -->
 - [ ] Optional: Make this prettier
-    - Situation: Inside `conftest.py`, the global fixture file for pytest, this import is used
+    - [ ] pytest config `python -m pytest -s --maxfail=2 test_file.py --filename path\to\file.py`
+    - [ ] Inside `conftest.py`, the global fixture file for pytest, this import is used
         ```python
         import sys
         sys.path.append(__file__ + '\\..\\..\\')
@@ -77,6 +74,13 @@
         ```
 
 #### Solved (Latest to Oldest):
+- [x] Generate test log
+    - Note: executin' the module will be a task to the web environment to query
+    - Solution: basic logging implemented, appends to file the new message
+    ```python
+    # file: engine.Tester
+    def log(error_message: str, expect: str, output: str, logfile: str = "log.txt", sep: str = "\r\n¤»Judge«¤\r\n"):
+    ```
 - [x] Filename argument is hardcoded
     - Solution: Added support to `-F` and `--filename` console args, watch for open() restrictions
 - [x] Study the possibility to create a package for extra modules

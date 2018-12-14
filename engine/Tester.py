@@ -51,17 +51,18 @@ def run(filename: str, user_input: str):
     # Subject' program test output
     return Program( input = user_input, output = consoleout.getvalue() , globals = resources )
 
-def log(error_message: str, logfile: str = "log.txt", fancy = False):
+def log(error_message: str, expect: str, output: str, logfile: str = "log.txt", sep: str = "\r\n¤»Judge«¤\r\n"):
     '''
         Appends a error_message to a error logging file.
         :return: <logfile> or None, if fails
     '''
     log = open(logfile, 'a')
     if log.writable():
-        if log.write(error_message) != len(error_message):
-            try:
-                log.close()
-            except:
-                return None
+        try:
+            log.write(sep.join([error_message,expect,output])+sep)
+        except:
+            return None
+        finally:
+            log.close()
         return logfile
     return None
