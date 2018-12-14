@@ -50,3 +50,18 @@ def run(filename: str, user_input: str):
             resources.pop(_)
     # Subject' program test output
     return Program( input = user_input, output = consoleout.getvalue() , globals = resources )
+
+def log(error_message: str, logfile: str = "log.txt", fancy = False):
+    '''
+        Appends a error_message to a error logging file.
+        :return: <logfile> or None, if fails
+    '''
+    log = open(logfile, 'a')
+    if log.writable():
+        if log.write(error_message) != len(error_message):
+            try:
+                log.close()
+            except:
+                return None
+        return logfile
+    return None

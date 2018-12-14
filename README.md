@@ -46,6 +46,7 @@
     - Note: executin' the module will be a task to the web environment to query
     - Solution Example: pytest tests/1/test_main.py -F alumni\190015417\1\main.py | tee log.txt
     <!--
+    Possible use to capture raise errors from the students code
     caplog 
     logging.LogRecord
     https://docs.pytest.org/en/latest/reference.html#caplog

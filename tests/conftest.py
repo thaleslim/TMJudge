@@ -35,3 +35,9 @@ def run():
     def __run__(filename, *user_input):
         return Tester.run(filename, *user_input)
     return __run__
+
+@pytest.fixture
+def log():
+    def __log__(error_message: str, *args):
+        return Tester.log(error_message, *args)
+    return __log__
