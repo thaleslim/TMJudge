@@ -1,7 +1,6 @@
 .pytest_cache
 .vscode
-log.txt
+.src
 engine/__pycache__
 tests/1/__pycache__
 tests/__pycache__
-tests/src

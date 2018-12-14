@@ -41,17 +41,7 @@
 :octocat: Thank you  
 
 #### TODOs (always remember to prioritize the essentials):
-- [ ] Use custom exceptions module:
-    - Usage example:
-    ```python
-    import sys
-    sys.path.append(__file__ + '\\..\\..\\..\\')
-    from engine import InvalidArgument as custom_errors
-    def func(*args):
-        if not len(args):
-            raise custom_errors.InvalidArgument("No parameters were assigned", args)
-    ```
-- [ ] Add a way to kill the program after time runs outs or infinite loop
+- [ ] Add a way to kill the program after time runs outs
     - Solution: use `trace` module instead of `exec()` and `eval()` directly
 - [ ] Expand Tester.run() funcionalities
     - [ ] Store more details about the subject' code:
@@ -71,6 +61,16 @@
         import sys
         sys.path.append(__file__ + '\\..\\..\\')
         from engine import Tester
+        ```
+    - [ ] Use custom exceptions module:
+        - Usage example:
+        ```python
+        import sys
+        sys.path.append(__file__ + '\\..\\..\\..\\')
+        from engine import InvalidArgument as custom_errors
+        def func(*args):
+            if not len(args):
+                raise custom_errors.InvalidArgument("No parameters were assigned", args)
         ```
 
 #### Solved (Latest to Oldest):
