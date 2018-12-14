@@ -53,8 +53,9 @@
 - [ ] Use custom exceptions module:
     - Usage example:
     ```python
-    sys.path.append('src/')
-    import exceptions as custom_errors
+    import sys
+    sys.path.append(__file__ + '\\..\\..\\..\\')
+    from engine import InvalidArgument as custom_errors
     def func(*args):
         if not len(args):
             raise custom_errors.InvalidArgument("No parameters were assigned", args)
@@ -67,10 +68,10 @@
     - [ ] If multiple inputs -> execute run multiple times -> return list(Program())
     - [ ] Add support to filename or code as input
 - [ ] Optional: Make this prettier
-    - Situation: Every test file, previous to engine import, needs this header
+    - Situation: Inside `conftest.py`, the global fixture file for pytest, this import is used
         ```python
         import sys
-        sys.path.append(__file__ + '\\..\\..\\..\\')
+        sys.path.append(__file__ + '\\..\\..\\')
         from engine import Tester
         ```
 

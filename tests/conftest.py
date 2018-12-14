@@ -1,6 +1,10 @@
 # TMJudge: A Code Judge Environment
 # Copyright (C) 2018 Thales Menezes @thaleslim
 
+import sys
+sys.path.append(__file__ + '\\..\\..\\')
+from engine import Tester
+
 import pytest
 
 def pytest_addoption(parser):
@@ -25,3 +29,9 @@ def filename(request):
     if filename != None:
         return filename
     pytest.fail("Missing arg filename")
+
+@pytest.fixture
+def run():
+    def __run__(filename, *user_input):
+        return Tester.run(filename, *user_input)
+    return __run__
