@@ -41,19 +41,34 @@
 :octocat: Thank you  
 
 #### TODOs (always remember to prioritize the essentials):
-- [ ] Add a way to kill the program after time runs outs
-    - Solution: use `trace` module instead of `exec()` and `eval()` directly
+#####   Frontend skills
+- [ ] HTML
+- [ ] SQL
+- [ ] CSS
+- [ ] Django framework
+- [ ] Javascript
+#####   Backend
+- [ ] Refactor Tester' module run() and log() to be more server friendly
+    - Do we really need pytest? if so, is there a way to run from within python?
+    - Tester module:
+        - would it be better to create classes?
+        - run(): Evaluate viability to pass code as cmd input
+        - log(): Evaluate the possibility to use return to log the results:
+            - split the knowledge
+            - log class?
 - [ ] Expand Tester.run() funcionalities
+    - [ ] Add support to filename or code as input
     - [ ] Store more details about the subject' code:
         - Examples: uses recursion? where?
     - [ ] If multiple inputs -> execute run multiple times -> return list(Program())
-    - [ ] Add support to filename or code as input
     <!--
         Possible use to capture raised Exceptions from the students code
         caplog
         logging.LogRecord
         https://docs.pytest.org/en/latest/reference.html#caplog
       -->
+- [ ] Add a way to kill the program after time runs outs
+    - Solution: use `trace` module instead of `exec()` and `eval()` directly
 - [ ] Optional: Make this prettier
     - [ ] pytest config `python -m pytest -s --maxfail=2 test_file.py --filename path\to\file.py`
     - [ ] Inside `conftest.py`, the global fixture file for pytest, this import is used
