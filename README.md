@@ -42,11 +42,12 @@
 
 #### TODOs (always remember to prioritize the essentials):
 #####   Frontend skills
-- [ ] HTML
-- [ ] SQL
+- [x] HTML
 - [ ] CSS
-- [ ] Django framework
 - [ ] Javascript
+- [ ] SQL
+- [ ] Django framework
+- [ ] Develop Turtle 'n Scratch inspired game using web tools (to show the environment) and a text box to user input python code (create base movement function and prepend the user' input, run(), get output and update web environment).
 #####   Backend
 - [ ] Refactor Tester' module run() and log() to be more server friendly
     - Do we really need pytest? if so, is there a way to run from within python?
