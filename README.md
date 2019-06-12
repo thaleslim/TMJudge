@@ -4,18 +4,14 @@
     Copyright (C) 2018 Thales Menezes
 
     Philosophy:
-        A Code Judge should be a tool to guide student's programmin' learning,
-        a environment to correct and show errors as opportunities for growth;
+        A Code Judge should be a tool to guide student's programming learning,
+        an environment to correct and show errors as opportunities for growth;
         while also assisting teachers and tutors with class management, giving
-        more time to address specific or theorical questions with the student.
-
-        To achieve this, the judge can not be viewed by students as a foe
-        to be defeated; or a buggy program to appologize for it's flaws
-        in a attempt to keep the student motivated.
+        more time to help with specific or theorical questions.
         
         The judge should be as independent, well polished and communicative as
         possible, it should be a arrow pointing in a direction, when necessary,
-        instead of a riddle to be solved in every single feature.
+        instead of a riddle to be solved.
 
     This program is free software: you can redistribute it and/or modify it under the terms
     of the GNU Affero General Public License as published by the Free Software Foundation,
